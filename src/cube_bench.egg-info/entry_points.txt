@@ -1,2 +1,0 @@
-[console_scripts]
-cube-bench = cube_bench.cli:main

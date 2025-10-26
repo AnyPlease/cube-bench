@@ -616,16 +616,16 @@ def get_strategy(name: str, engine: str, REGISTRY: Dict[str, ModelSpec]) -> Mode
 
 class ModelAssistant:
     MODEL_REGISTRY: Dict[str, ModelSpec] = {
-        "gemma3": ModelSpec("gemma3", "/home/dana0001/wj84_scratch/dana0001/models/google/gemma-3-27b-it", GemmaStrategy, VllmStrategy),
-        "llama4": ModelSpec("llama4", "/home/dana0001/wj84_scratch/dana0001/models/meta-llama/Llama-4-Scout-17B-16E-Instruct", LlamaStrategy, VllmStrategy),
-        "qwen2.5-7b": ModelSpec("qwen2.5-7b", "/home/dana0001/wj84_scratch/dana0001/models/Qwen/Qwen2.5-VL-7B-Instruct", QwenVLStrategy, VllmStrategy),
-        "qwen2.5-32b": ModelSpec("qwen2.5-32b", "/home/dana0001/wj84_scratch/dana0001/models/Qwen/Qwen2.5-VL-32B-Instruct", QwenVLStrategy, VllmStrategy),
-        "qwen3-vl-thinking": ModelSpec("qwen3-vl-thinking", "/home/dana0001/wj84_scratch/dana0001/models/Qwen/Qwen3-VL-30B-A3B-Thinking", QwenVLStrategy, VllmStrategy),
+        "gemma3": ModelSpec("gemma3", "google/gemma-3-27b-it", GemmaStrategy, VllmStrategy),
+        "llama4": ModelSpec("llama4", "meta-llama/Llama-4-Scout-17B-16E-Instruct", LlamaStrategy, VllmStrategy),
+        "qwen2.5-7b": ModelSpec("qwen2.5-7b", "Qwen/Qwen2.5-VL-7B-Instruct", QwenVLStrategy, VllmStrategy),
+        "qwen2.5-32b": ModelSpec("qwen2.5-32b", "Qwen/Qwen2.5-VL-32B-Instruct", QwenVLStrategy, VllmStrategy),
+        "qwen3-vl-thinking": ModelSpec("qwen3-vl-thinking", "Qwen/Qwen3-VL-30B-A3B-Thinking", QwenVLStrategy, VllmStrategy),
         "gemini2.5-pro": ModelSpec("gemini-pro", "gemini-2.5-pro", GeminiStrategy, GeminiStrategy, supports_image=True),
         # InternVL3 (HF only for now)
         "internvl3_5-38b": ModelSpec(
             "internvl3_5-38b",
-            "/home/dana0001/wj84_scratch/dana0001/models/OpenGVLab/InternVL3_5-38B",
+            "OpenGVLab/InternVL3_5-38B",
             InternVL3_5Strategy,
             None,
             dtype=torch.bfloat16,
@@ -633,7 +633,7 @@ class ModelAssistant:
         ),
         "glm4.5v": ModelSpec(
             "glm4.5v",
-            "/home/dana0001/wj84_scratch/dana0001/models/Zai/GLM-4.5V",  # or "zai-org/GLM-4.5V"
+            "Zai/GLM-4.5V",  # or "zai-org/GLM-4.5V"
             GLM45VStrategy,
             VllmStrategy,                 # vLLM works if your build has GLM-4.5V recipe; fall back to 'hf' if not
             dtype=torch.bfloat16,

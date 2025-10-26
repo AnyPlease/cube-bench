@@ -1,17 +1,16 @@
-# --- OS / macOS ---
+# from repo root
+cat > .gitignore <<'EOF'
+# macOS
 .DS_Store
-.AppleDouble
-.LSOverride
-Icon?
 ._*
+Icon?
 
-# --- Python ---
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
 
-# Virtual envs
+# Envs
 .venv/
 venv/
 env/
@@ -23,36 +22,25 @@ dist/
 .eggs/
 pip-wheel-metadata/
 
-# Testing / coverage
+# Tests / coverage
 .pytest_cache/
 .coverage*
 htmlcov/
 
-# Typing / linters
-.mypy_cache/
-.pytype/
-.pyright/
-
-# Jupyter
-.ipynb_checkpoints/
-
-# Editors / IDEs
+# Editors
 .vscode/
 .idea/
-*.swp
 
-# Logs & caches
-logs/
-*.log
+# Caches / logs
 .cache/
 *.cache
+logs/
+*.log
 
-# --- Project-specific (generated, big) ---
-# Precomputed IDA* / pattern DBs & similar heavy artifacts
+# Project-specific
 src/cube_bench/optimal/graph/**
 !src/cube_bench/optimal/graph/.gitkeep
-
-# Runs, artifacts, local data
 runs/
 artifacts/
 data/
+EOF

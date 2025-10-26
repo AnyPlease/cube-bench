@@ -1,12 +1,14 @@
-# =========================
-# file: cube_bench/__init__.py
-# =========================
+# src/cube_bench/__init__.py
+from __future__ import annotations
 
-__all__ = [
-    "Config",
-    "save_results",
-    "load_prompts",
-]
+# Keep version single-sourced from pyproject.toml
+try:
+    from importlib.metadata import version, PackageNotFoundError  # Python 3.10+
+except Exception:  # pragma: no cover
+    # Only needed for very old Pythons; your project requires 3.10+
+    from importlib_metadata import version, PackageNotFoundError  # type: ignore
 
-from .config import Config
-from .io import save_results, load_prompts
+try:
+    __version__ = version("cube-bench")  # ← use the *distribution* name (with hyphen)
+except PackageNotFoundError:  # not installed (e.g., running from source without pip -e .)
+    __version__ = "0+unknown"
