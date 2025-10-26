@@ -1,0 +1,27 @@
+# =====================
+# file: pyproject.toml
+# =====================
+# Minimal build system + runnable module
+
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cube-bench"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+  "numpy",
+  "matplotlib",
+  "tqdm",
+  "pycuber",
+  "kociemba",
+]
+
+[project.scripts]
+cube-bench = "cube_bench.cli:main"
+
+[tool.setuptools]
+packages = ["cube_bench", "cube_bench.core", "cube_bench.tests"]
+include-package-data = true

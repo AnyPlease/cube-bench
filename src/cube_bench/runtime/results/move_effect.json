@@ -1,0 +1,122 @@
+[
+    {
+        "model_name": "glm4.5v",
+        "test_type": "move_effect",
+        "n_moves": 1,
+        "timestamp": "2025-10-07T01:30:49.351229",
+        "micro_acc": 0.0,
+        "macro_f1": 0.0,
+        "per_class_precision": {
+            "INCREASE": 0.0,
+            "NO_CHANGE": 0.0,
+            "DECREASE": 0.0
+        },
+        "per_class_recall": {
+            "INCREASE": 0.0,
+            "NO_CHANGE": 0.0,
+            "DECREASE": 0.0
+        },
+        "per_class_f1": {
+            "INCREASE": 0.0,
+            "NO_CHANGE": 0.0,
+            "DECREASE": 0.0
+        },
+        "labels_total": 4,
+        "confusion": {
+            "INCREASE": {
+                "MISSING": 2
+            },
+            "DECREASE": {
+                "MISSING": 1
+            },
+            "NO_CHANGE": {
+                "MISSING": 1
+            }
+        },
+        "support": {
+            "INCREASE": 2,
+            "DECREASE": 1,
+            "NO_CHANGE": 1
+        },
+        "gold_priors": {
+            "INCREASE": 0.5,
+            "NO_CHANGE": 0.25,
+            "DECREASE": 0.25
+        },
+        "pred_mix": {
+            "INCREASE": 0.0,
+            "NO_CHANGE": 0.0,
+            "DECREASE": 0.0
+        },
+        "expected_dot": 0.0,
+        "maj_baseline": 0.5,
+        "prior_sample_baseline": 0.375,
+        "per_distance_micro_acc": {
+            "1": 0.0
+        },
+        "option_coverage_counts": {
+            "3": 1
+        },
+        "num_samples": 1
+    },
+    {
+        "model_name": "glm4.5v",
+        "test_type": "move_effect",
+        "n_moves": 1,
+        "timestamp": "2025-10-07T01:45:46.048100",
+        "micro_acc": 0.0,
+        "macro_f1": 0.0,
+        "per_class_precision": {
+            "INCREASE": 0.0,
+            "NO_CHANGE": 0.0,
+            "DECREASE": 0.0
+        },
+        "per_class_recall": {
+            "INCREASE": 0.0,
+            "NO_CHANGE": 0.0,
+            "DECREASE": 0.0
+        },
+        "per_class_f1": {
+            "INCREASE": 0.0,
+            "NO_CHANGE": 0.0,
+            "DECREASE": 0.0
+        },
+        "labels_total": 4,
+        "confusion": {
+            "INCREASE": {
+                "MISSING": 2
+            },
+            "NO_CHANGE": {
+                "MISSING": 1
+            },
+            "DECREASE": {
+                "MISSING": 1
+            }
+        },
+        "support": {
+            "INCREASE": 2,
+            "NO_CHANGE": 1,
+            "DECREASE": 1
+        },
+        "gold_priors": {
+            "INCREASE": 0.5,
+            "NO_CHANGE": 0.25,
+            "DECREASE": 0.25
+        },
+        "pred_mix": {
+            "INCREASE": 0.0,
+            "NO_CHANGE": 0.0,
+            "DECREASE": 0.0
+        },
+        "expected_dot": 0.0,
+        "maj_baseline": 0.5,
+        "prior_sample_baseline": 0.375,
+        "per_distance_micro_acc": {
+            "1": 0.0
+        },
+        "option_coverage_counts": {
+            "3": 1
+        },
+        "num_samples": 1
+    }
+]
