@@ -4,7 +4,6 @@ import logging
 from pathlib import Path
 
 from .config import Config
-from .orchestrator import TestOrchestrator
 
 def setup_logging(level: str = "INFO", log_file: Path | None = None):
     handlers = [logging.StreamHandler()]
@@ -19,12 +18,14 @@ def setup_logging(level: str = "INFO", log_file: Path | None = None):
 def main():
     parser = argparse.ArgumentParser(description="Run Rubik's Cube MLLM evaluations")
 
-    parser.add_argument("--model", required=True, type=str,
+    parser.add_argument("--build", action="store_true")
+
+    parser.add_argument("--model", required=False, type=str,
         choices=[
             "qwen2.5-7b","qwen2.5-32b","gemma3","llama4",
             "gemini2.5-pro","gemini2.5-flash","internvl3_5-38b","glm4.5v","qwen3-vl-thinking"
         ])
-    parser.add_argument("--test", required=True, type=str,
+    parser.add_argument("--test", required=False, type=str,
         choices=[
             "prediction","verification","reconstruction","step-by-step",
             "learning-curve","move-effect","invariance-sweep",
@@ -60,6 +61,12 @@ def main():
 
     orch = None
     try:
+        if args.build:
+            import cube_bench.optimal.solver as sv
+            return
+
+        from .orchestrator import TestOrchestrator
+
         orch = TestOrchestrator(model_name=args.model, config=config, backend=args.backend)
         result = orch.run_test(
             test_type=args.test,

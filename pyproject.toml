@@ -1,7 +1,6 @@
 # =====================
 # file: pyproject.toml
 # =====================
-# Minimal build system + runnable module
 
 [build-system]
 requires = ["setuptools>=68", "wheel"]
@@ -18,10 +17,16 @@ dependencies = [
   "pycuber",
   "kociemba",
 ]
+readme = "README.md"
 
 [project.scripts]
 cube-bench = "cube_bench.cli:main"
 
 [tool.setuptools]
-packages = ["cube_bench", "cube_bench.core", "cube_bench.tests"]
+package-dir = {"" = "src"}
 include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["cube_bench*"]
+exclude = ["tests*", "docs*"]

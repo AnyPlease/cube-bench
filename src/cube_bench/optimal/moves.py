@@ -15,7 +15,7 @@ a = cb.CubieCube()
 # 0 <= twist < 2187
 fname = HERE / "move_twist"
 if not path.isfile(fname):
-    print("creating " + fname + " table...")
+    print(f"loading {fname} table...")
     twist_move = ar.array('H', [0 for i in range(N_TWIST * N_MOVE)])
     for i in range(N_TWIST):
         a.set_twist(i)
@@ -40,7 +40,7 @@ fh.close()
 # 0 <= flip < 2048
 fname = HERE / "move_flip"
 if not path.isfile(fname):
-    print("creating " + fname + " table...")
+    print(f"loading {fname} table...")
     flip_move = ar.array('H', [0 for i in range(N_FLIP * N_MOVE)])
     for i in range(N_FLIP):
         a.set_flip(i)
@@ -65,7 +65,7 @@ fh.close()
 # 0 <= slice_sorted < 11880
 fname = HERE / "move_slice_sorted"
 if not path.isfile(fname):
-    print("creating " + fname + " table...")
+    print(f"loading {fname} table...")
     slice_sorted_move = ar.array('H', [0 for i in range(N_SLICE_SORTED * N_MOVE)])
     for i in range(N_SLICE_SORTED):
         if i % 200 == 0:
@@ -93,7 +93,7 @@ fh.close()
 # 0 <= corners < 40320
 fname = HERE / "move_corners"
 if not path.isfile(fname):
-    print("creating " + fname + " table...")
+    print(f"loading {fname} table...")
     corners_move = ar.array('H', [0 for i in range(N_CORNERS * N_MOVE)])
     for i in range(N_CORNERS):
         if (i+1) % 200 == 0:

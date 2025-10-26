@@ -39,7 +39,7 @@ def create_phase1x24_prun_table():
     total = defs.N_FLIPSLICESORTED_CLASS * defs.N_TWIST
     fname = HERE / "phase1x24_prun"
     if not path.isfile(fname):
-        print("creating " + fname + " table...")
+        print(f"loading {fname} table...")
         print('This may take 8 hours or even longer, depending on the hardware and the Python version.')
         print('Using PyPy instead of CPython gives a table creation speedup by a factor of about 20.')
 
@@ -160,7 +160,7 @@ def create_cornerprun_table():
     fname = HERE / "cornerprun"
     global corner_depth
     if not path.isfile(fname):
-        print("creating " + fname + " table...")
+        print(f"loading {fname} table...")
         corner_depth = ar.array('b', [-1] * defs.N_CORNERS)
         corners = 0  # value for solved corners
         corner_depth[corners] = 0

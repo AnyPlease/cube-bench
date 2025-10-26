@@ -1,0 +1,58 @@
+# --- OS / macOS ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Builds / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Testing / coverage
+.pytest_cache/
+.coverage*
+htmlcov/
+
+# Typing / linters
+.mypy_cache/
+.pytype/
+.pyright/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+
+# Logs & caches
+logs/
+*.log
+.cache/
+*.cache
+
+# --- Project-specific (generated, big) ---
+# Precomputed IDA* / pattern DBs & similar heavy artifacts
+src/cube_bench/optimal/graph/**
+!src/cube_bench/optimal/graph/.gitkeep
+
+# Runs, artifacts, local data
+runs/
+artifacts/
+data/

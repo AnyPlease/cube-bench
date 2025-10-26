@@ -95,7 +95,7 @@ if not path.isfile(fname):
     print('Using PyPy reduces the time to about 15 minutes.')
     print('All tables are stored in ' + path.dirname(path.abspath(fname)))
     print()
-    print("creating " + fname + " table...")
+    print(f"creating {fname} table...")
     twist_conj = ar.array('H', [0] * (N_TWIST * N_SYM_D4h))
     for t in range(N_TWIST):
         cc = cb.CubieCube()
