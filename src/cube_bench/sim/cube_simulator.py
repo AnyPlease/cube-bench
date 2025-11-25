@@ -28,7 +28,7 @@ from pycuber.solver import CFOPSolver
 from PIL import Image, ImageDraw, ImageEnhance
 import io, base64
 import random
-import cube_bench.optimal.solver as sv
+# import cube_bench.optimal.solver as sv
 
 # ---------------------------------------------------------------------------
 # Configuration helpers
@@ -783,7 +783,6 @@ class VirtualCube:
 
 
 if __name__ == "__main__":
-    cube1 = VirtualCube()
-    cube1.apply("R2 D2 R")
-    cube1.apply("L")
-    print(f"Cube 1 distance: {cube1.get_distance()}")
+    cube = VirtualCube()
+    cube.scramble(n_moves=10)
+    cube.to_image("cube_scramble.png")

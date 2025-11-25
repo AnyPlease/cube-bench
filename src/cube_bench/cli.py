@@ -44,7 +44,7 @@ def main():
     parser.add_argument("--reflection-type", default="Redacted",
                         choices=["Unguided","Redacted","Unredacted"],
                         help="Reflection bundle to use from reflection prompts JSON.")
-    parser.add_argument("--reflection-prompts", type=Path, default=Path("/home/dana0001/wj84_scratch/dana0001/rubiks-cube-thesis/scripts/cube_bench/prompts/reflection.json"),
+    parser.add_argument("--reflection-prompts", type=Path,
                         help="Path to reflection prompt bundles JSON.")
     parser.add_argument("--max-reflections", type=int, default=None,
                         help="Cap number of wrong items to reflect on (cost control).")
