@@ -2,6 +2,12 @@
 
 > A reproducible Rubik’s Cube benchmark suite for probing multimodal LLMs across perception, grounding, and closed-loop control.
 
+**Cube Bench** is a framework designed to evaluate the reasoning and planning capabilities of Large Multimodal Models (LMMs) using the Rubik's Cube as a complex, structured environment. It focuses on three core pillars:
+
+1. **Perception:** Can the model accurately recognize the state of the cube from images?
+2. **Grounding:** Can the model map visual states to internal representations?
+3. **Closed-Loop Control:** Can the model generate valid moves to reach a target state (e.g., solving the cube)?
+
 ---
 
 ## Install & Quick Start
@@ -51,7 +57,7 @@ pip install -e .
 ---
 
 ### 5) Precompute IDA* / optimal-distance graphs  
-Note: this can take ~8 hours to compute.
+**Warning**: This process precomputes IDA* / optimal-distance graphs. It is computationally intensive and can take ~8 hours depending on your CPU.
 
 ```bash
 cube-bench --build
