@@ -22,7 +22,7 @@ def main():
 
     parser.add_argument("--model", required=False, type=str,
         choices=[
-            "qwen2.5-7b","qwen2.5-32b","gemma3","llama4",
+            "qwen2.5-7b","qwen2.5-32b","gemma3","gemma3-4b","llama4",
             "gemini2.5-pro","gemini2.5-flash","internvl3_5-38b","glm4.5v","qwen3-vl-thinking"
         ])
     parser.add_argument("--test", required=False, type=str,
@@ -92,7 +92,7 @@ def main():
     finally:
         if orch:
             pass
-            # orch.cleanup()   # turn cleanup back on
+            orch.cleanup()   # turn cleanup back on
 
 
 if __name__ == "__main__":

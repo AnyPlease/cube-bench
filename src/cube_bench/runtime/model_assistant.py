@@ -47,7 +47,7 @@ try:
     from vllm import LLM, SamplingParams
 except Exception as e:  # pragma: no cover
     LLM = SamplingParams = None  # type: ignore
-    logger.info(f"[vLLM] Import optional: {e}")
+    logger.info(f"[vLLM] Import: {e}")
 
 # Keep vLLM quiet but preserve our INFO logs
 logging.getLogger("vllm").setLevel(logging.WARNING)
@@ -261,8 +261,15 @@ class HuggingFaceStrategy(ModelStrategy):
     def load(self) -> None:
         self._ensure_processor()
         self.model = self._load_model_instance()
+        
         # If model is sharded we won't have single .device; inputs go to cuda:0 if available
-        self._device_for_inputs = "cuda:0" if torch.cuda.is_available() else "cpu"
+        if torch.cuda.is_available():
+            self._device_for_inputs = "cuda:0"
+        elif torch.backends.mps.is_available():
+            self._device_for_inputs = "mps"
+        else:
+            self._device_for_inputs = "cpu"
+
         logger.info("[%s] HF model ready (inputs on %s)", self.spec.name, self._device_for_inputs)
 
     @abstractmethod
@@ -617,6 +624,7 @@ def get_strategy(name: str, engine: str, REGISTRY: Dict[str, ModelSpec]) -> Mode
 class ModelAssistant:
     MODEL_REGISTRY: Dict[str, ModelSpec] = {
         "gemma3": ModelSpec("gemma3", "google/gemma-3-27b-it", GemmaStrategy, VllmStrategy),
+        "gemma3-4b": ModelSpec("gemma3-4b", "google/gemma-3-4b-it", GemmaStrategy, VllmStrategy),
         "llama4": ModelSpec("llama4", "meta-llama/Llama-4-Scout-17B-16E-Instruct", LlamaStrategy, VllmStrategy),
         "qwen2.5-7b": ModelSpec("qwen2.5-7b", "Qwen/Qwen2.5-VL-7B-Instruct", QwenVLStrategy, VllmStrategy),
         "qwen2.5-32b": ModelSpec("qwen2.5-32b", "Qwen/Qwen2.5-VL-32B-Instruct", QwenVLStrategy, VllmStrategy),

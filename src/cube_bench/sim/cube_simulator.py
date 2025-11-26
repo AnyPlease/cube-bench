@@ -461,6 +461,12 @@ class VirtualCube:
                 # New API: get an RGBA buffer (H * W * 4 bytes)
                 rgba = np.frombuffer(fig.canvas.buffer_rgba(), dtype=np.uint8)
                 w, h = fig.canvas.get_width_height()
+
+                # Detect and handle HiDPI/Retina scaling (buffer size > logical size)
+                scale = int(np.sqrt(rgba.size / (w * h * 4)))
+                if scale > 1:
+                    w, h = w * scale, h * scale
+
                 rgba = rgba.reshape(h, w, 4)
 
                 # Drop alpha (matplotlib may have composited background already)
