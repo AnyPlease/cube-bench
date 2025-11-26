@@ -6,25 +6,61 @@
 
 ## Install & Quick Start
 
+### 1) Clone the repository
+
 ```bash
-# 1) Clone the repository
 git clone <repo-url> cube-bench
 cd cube-bench
+```
 
-# 2) Create & activate a virtual environment (Highly Recommended)
+---
+
+### 2) Create & activate an environment (choose one)
+
+**Option A: Conda (recommended for AI/ML)**
+
+```bash
+conda create -n cube_bench python=3.12
+conda activate cube_bench
+```
+
+**Option B: Python venv**
+
+```bash
 python -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
+```
 
-# 3) Install pinned dependencies
-#    CRITICAL: Run this *before* installing the package to prevent version conflicts.
+---
+
+### 3) Install pinned dependencies  
+CRITICAL: Run this *before* installing the package to prevent version conflicts.
+
+```bash
 pip install -r requirements.txt
+```
 
-# 4) Install the package in editable dev mode
+---
+
+### 4) Install the package in editable dev mode
+
+```bash
 pip install -e .
+```
 
-# 5) Precompute IDA* / optimal-distance graphs
-#    Note: this can take ~8 hours to compute.
+---
+
+### 5) Precompute IDA* / optimal-distance graphs  
+Note: this can take ~8 hours to compute.
+
+```bash
 cube-bench --build
+```
 
-# 6) Check the install
+---
+
+### 6) Check the install
+
+```bash
 python -c "import cube_bench as cb; print('cube_bench version:', getattr(cb, '__version__', 'unknown'))"
+```
