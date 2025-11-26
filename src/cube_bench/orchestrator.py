@@ -15,7 +15,6 @@ from .tests import (
     LearningCurveTest,
     MoveEffectTest,
     InvarianceSweepTest,
-    PersistenceBlackoutTest,
     ReflectionTest
 )
 from cube_bench.runtime.model_assistant import ModelAssistant
@@ -38,7 +37,6 @@ class TestOrchestrator:
             "learning-curve": LearningCurveTest,
             "move-effect": MoveEffectTest,
             "invariance-sweep": InvarianceSweepTest,
-            "persistence-blackout": PersistenceBlackoutTest,
             "reflection": ReflectionTest,
         }
 

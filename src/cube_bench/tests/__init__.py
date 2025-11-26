@@ -9,7 +9,6 @@ from .step_by_step import StepByStepTest
 from .learning_curve import LearningCurveTest
 from .move_effect import MoveEffectTest
 from .invariance_sweep import InvarianceSweepTest
-from .persistence_blackout import PersistenceBlackoutTest
 from .reflection import ReflectionTest
 
 __all__ = [
@@ -20,6 +19,5 @@ __all__ = [
     "LearningCurveTest",
     "MoveEffectTest",
     "InvarianceSweepTest",
-    "PersistenceBlackoutTest",
     "ReflectionTest"
 ]

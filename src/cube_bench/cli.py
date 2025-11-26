@@ -29,7 +29,8 @@ def main():
         choices=[
             "prediction","verification","reconstruction","step-by-step",
             "learning-curve","move-effect","invariance-sweep",
-            "persistence-blackout","reflection"  # NEW
+            "persistence-blackout","reflection",
+            "all"
         ])
     parser.add_argument("--difficulty", default="easy", choices=["easy","medium","hard","all"])
     parser.add_argument("--prompt", default="image", choices=["mixed","image","text"])
@@ -68,31 +69,56 @@ def main():
         from .orchestrator import TestOrchestrator
 
         orch = TestOrchestrator(model_name=args.model, config=config, backend=args.backend)
-        result = orch.run_test(
-            test_type=args.test,
-            difficulty=args.difficulty,
-            prompt_type=args.prompt,
-            num_samples=args.samples,
-            n_moves=args.moves,
-            verbose=(args.log == "DEBUG"),
-            # pass through reflection knobs (others ignore them)
-            reflection_type=args.reflection_type,
-            reflection_prompts=args.reflection_prompts,
-            max_reflections=args.max_reflections,
-        )
-        if not args.quiet:
-            if args.test == "reflection":
-                # result is a summary dict
-                print(f"✅ Reflection done → {result}")
-            else:
-                print(f"✅ Finished: test={args.test} n={args.samples} moves={args.moves} → results in {config.results_dir}")
+        if args.test == "all":
+            tests_to_run = [
+                "verification",
+                "reconstruction",
+                "prediction",
+                "step-by-step",
+                "learning-curve",
+                "move-effect",
+                "invariance-sweep",
+                "reflection"
+            ]
+            print(f"🚀 Running ALL tests: {tests_to_run}")
+
+        else:
+            tests_to_run = [args.test]
+            
+
+        results_summary = {}
+        for test_name in tests_to_run:
+            print(f"\n=== ▶️ Starting Test: {test_name} ===")
+            try:
+                result = orch.run_test(
+                    test_type=test_name,
+                    difficulty=args.difficulty,
+                    prompt_type=args.prompt,
+                    num_samples=args.samples,
+                    n_moves=args.moves,
+                    verbose=(args.log == "DEBUG"),
+                    reflection_type=args.reflection_type,
+                    reflection_prompts=args.reflection_prompts,
+                    max_reflections=args.max_reflections,
+                )
+                results_summary[test_name] = "✅ Completed"
+            except Exception as e:
+                logging.error(f"Test {test_name} failed: {e}")
+                results_summary[test_name] = "❌ Failed"
+
+        # 4. Print a final summary
+        print("\n" + "="*40)
+        print("📊 EXECUTION SUMMARY")
+        print("="*40)
+        for t, status in results_summary.items():
+            print(f"{t:<20} {status}")
+            
     except Exception:
         logging.exception("An error occurred during evaluation")
         raise
     finally:
         if orch:
-            pass
-            orch.cleanup()   # turn cleanup back on
+            orch.cleanup()
 
 
 if __name__ == "__main__":
