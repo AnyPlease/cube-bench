@@ -5,21 +5,28 @@ from pathlib import Path
 
 from .config import Config
 
-def setup_logging(level: str = "INFO", log_file: Path | None = None):
-    handlers = [logging.StreamHandler()]
+def setup_logging(level: str = "INFO", log_file: Path | None = None, quiet: bool = False):
+    handlers = [] # Start with an empty list
+    
+    # Only add the console handler if NOT in quiet mode
+    if not quiet:
+        handlers.append(logging.StreamHandler())
+        
+    # File handler is added regardless of quiet mode (standard CLI practice)
     if log_file:
         handlers.append(logging.FileHandler(log_file, encoding="utf-8"))
+        
     logging.basicConfig(
         level=getattr(logging, level.upper(), logging.INFO),
         format="%(asctime)s - %(levelname)s - %(name)s - %(message)s",
         handlers=handlers,
+        force=True # Good practice to ensure previous configs are overwritten
     )
 
 def main():
     parser = argparse.ArgumentParser(description="Run Rubik's Cube MLLM evaluations")
 
     parser.add_argument("--build", action="store_true")
-
     parser.add_argument("--model", required=False, type=str,
         choices=[
             "qwen2.5-7b","qwen2.5-32b","gemma3","gemma3-4b","llama4",
@@ -56,8 +63,7 @@ def main():
     parser.add_argument("--quiet", action="store_true")
 
     args = parser.parse_args()
-    setup_logging(args.log, args.log_file)
-
+    setup_logging(args.log, args.log_file, quiet=args.quiet)
     config = Config(dataset_path=args.dataset, prompts_path=args.prompts, results_dir=args.results)
 
     orch = None

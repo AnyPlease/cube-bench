@@ -62,12 +62,12 @@ class ReconstructionTest(BaseTest):
     }
 
     FACE_TO_COLOR = {
-        "u": "W",  # Up = White
-        "d": "Y",  # Down = Yellow
-        "f": "G",  # Front = Green
-        "b": "B",  # Back = Blue
-        "l": "O",  # Left = Orange
-        "r": "R",  # Right = Red
+        "u": "W",  # Up     = White
+        "d": "Y",  # Down   = Yellow
+        "f": "G",  # Front  = Green
+        "b": "B",  # Back   = Blue
+        "l": "O",  # Left   = Orange
+        "r": "R",  # Right  = Red
     }
 
     def _enable_verbose_logging_if_requested(self) -> None:
@@ -255,7 +255,9 @@ class ReconstructionTest(BaseTest):
                     logger.debug(
                         f"Sample {idx} (attempts={attempt})\ngt={gt}\nscramble={scramble.__str__()}"
                     )
-                print(resp)
+
+                logger.debug(f"Model Response:\n{resp}")
+                
             except Exception as e:
                 logger.exception(
                     "assistant.generate failed on sample %d: %s", idx, e

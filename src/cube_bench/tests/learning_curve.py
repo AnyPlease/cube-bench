@@ -273,7 +273,7 @@ class LearningCurveTest(BaseTest):
                 try:
                     state_text = str(cube)
                 except Exception:
-                    state_text = cube._cube.__str__()  # noqa: SLF001
+                    state_text = cube._cube.__str__()
 
                 d_cur = self._distance(cube)
                 kwargs = {
@@ -293,7 +293,7 @@ class LearningCurveTest(BaseTest):
                     image=cube.to_image(),
                     max_new_tokens=2**16,
                     temperature=0.0,
-                    # stop=["</ANSWER>"],  # uncomment if your backend supports stop sequences
+                    # stop=["</ANSWER>"],
                 )
 
                 pred_letter = self._parse_answer(resp or "")

@@ -145,7 +145,7 @@ class PromptBuilder:
             tok = getattr(self.processor, "tokenizer", self.processor)  # tokenizer for text
             image_processor = getattr(self, "image_processor", getattr(self.processor, "image_processor", None))
 
-            # 1) Flatten content -> string + image placeholders
+            # Flatten content -> string + image placeholders
             image_token = getattr(tok, "image_token", "<image>")
             flat_msgs, images = [], []
             for m in messages:
@@ -161,10 +161,10 @@ class PromptBuilder:
 
             chat_text = tok.apply_chat_template(flat_msgs, add_generation_prompt=True, tokenize=False)
 
-            # 2) ALWAYS tokenize text with the tokenizer (no images kwarg here!)
+            # ALWAYS tokenize text with the tokenizer (no images kwarg here!)
             text_inputs = tok(chat_text, return_tensors="pt", padding=True)
 
-            # 3) If there’s an image, process it with an image processor and merge
+            # If there’s an image, process it with an image processor and merge
             if images:
                 if image_processor is None:
                     raise RuntimeError(
@@ -550,11 +550,11 @@ class GeminiStrategy(ModelStrategy):
         if image is not None:
             contents.append(_as_pil(image))
 
-        # 1. (Optional) Estimate input tokens BEFORE the call
+        # Estimate input tokens BEFORE the call
         input_token_estimate = model.count_tokens(contents).total_tokens
         logger.info(f"[gemini] Estimated input tokens: {input_token_estimate}")
 
-        # 2. Make the API call
+        # Make the API call
         resp = model.generate_content(contents)
         response_text = ""
         token_usage = {
@@ -563,9 +563,8 @@ class GeminiStrategy(ModelStrategy):
             "total_tokens": 0,
         }
 
-        # 3. Get exact token counts AFTER the call from usage metadata
+        # Get exact token counts AFTER the call from usage metadata
         try:
-            # It's good practice to check if a response was blocked
             if resp.candidates:
                 response_text = resp.text
             else:
