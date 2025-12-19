@@ -1,5 +1,3 @@
-# from repo root
-cat > .gitignore <<'EOF'
 # macOS
 .DS_Store
 ._*
@@ -43,4 +41,3 @@ src/cube_bench/optimal/graph/**
 runs/
 artifacts/
 data/
-EOF
